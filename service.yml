@@ -1,0 +1,24 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  name: knative-buildpack-demo
+  namespace: default
+spec:
+  runLatest:
+    configuration:
+      build:
+        serviceAccountName: docker-hub-bot
+        source:
+          git:
+            url: https://github.com/knative-demos/auto-detect-cf-buildpack.git
+            revision: master
+        template:
+          name: buildpack
+          arguments:
+          - name: IMAGE
+            value: danupo068/knative-buildpack-demo:latest
+      revisionTemplate:
+        spec:
+          container:
+            image: danupo068/knative-buildpack-demo:latest
+            imagePullPolicy: Always
