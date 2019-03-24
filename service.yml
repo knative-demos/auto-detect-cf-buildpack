@@ -13,12 +13,12 @@ spec:
             url: https://github.com/knative-demos/auto-detect-cf-buildpack.git
             revision: master
         template:
-          name: buildpack
+          name: buildpacks-cloudfoundry
           arguments:
           - name: IMAGE
-            value: danupo068/knative-buildpack-demo:latest
+            value: docker.io/danupo068/knative-buildpack-demo:latest
       revisionTemplate:
         spec:
           container:
-            image: danupo068/knative-buildpack-demo:latest
+            image: docker.io/danupo068/knative-buildpack-demo:latest
             imagePullPolicy: Always
